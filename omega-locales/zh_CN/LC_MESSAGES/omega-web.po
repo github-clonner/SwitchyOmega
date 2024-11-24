@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: SwitchyOmega 2.3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-13 11:05+0000\n"
-"PO-Revision-Date: 2018-07-06 20:27+0000\n"
-"Last-Translator: Felis Catus <shyc2010@gmail.com>\n"
+"PO-Revision-Date: 2024-02-23 04:02+0000\n"
+"Last-Translator: Nriver <junqing.zeng@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "switchyomega/main/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -12,10 +12,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 msgid "appNameShort"
-msgstr "SwitchyOmega"
+msgstr "Z&#8205;e&#8205;r&#8205;oOmega"
 
 msgid "manifest_app_name"
 msgstr "Proxy SwitchyOmega"
@@ -50,9 +50,9 @@ msgstr "域名正则"
 
 msgid "condition_help_HostRegexCondition"
 msgstr ""
-"类似域名通配符，但使用<a href='https://www.google.com/search?q=%E6%AD%A3%E5%88%99%E8%A1%"
-"A8%E8%BE%BE%E5%BC%8F'>正则表达式</a>.<br>正则表达式很难编写，且可读性差。<br>因此，一般情况建议使用通配符。"
-"当其他任何条件都不能满足要求时，才使用正则表达式。"
+"类似主机通配符条件，但通过<a href='https://www.google.com/search?q=regular%20expression'>正"
+"则表达式</a>匹配主机。<br>正则表达式很难编写，且可读性差。<br>因此，多数情况下建议使用通配符，只在其他任何条件类型都不能达到的情况下使用正则表"
+"达式。"
 
 msgid "condition_HostLevelsCondition"
 msgstr "域名层数"
@@ -90,9 +90,9 @@ msgstr "网址正则"
 
 msgid "condition_help_UrlRegexCondition"
 msgstr ""
-"使用功能强大的<a href='https://www.google.com/search?q=%E6%AD%A3%E5%88%99%E8%A1%A8%"
-"E8%BE%BE%E5%BC%8F'>正则表达式</a>来匹配网址。<br>但正则表达式很难编写，且可读性差。<br>因此，一般情况建议使用通配符。"
-"当其他任何条件都不能满足要求时，才使用正则表达式。"
+"使用功能强大的<a href='https://www.google.com/"
+"search?q=regular%20expression'>regular expression</a>正则表达式</a>来匹配URL。<br>但正则表"
+"达式很难编写，且可读性差。<br>因此，建议在大多数情况下使用通配符，只在任何其他条件类型都无法实现的情况下使用正则表达式。"
 
 msgid "condition_KeywordCondition"
 msgstr "关键字"
@@ -177,7 +177,7 @@ msgid "ruleList_error_invalidRule"
 msgstr "语法错误：非法规则。行号 $LNO$: $SOURCE$"
 
 msgid "ruleList_error_noDefaultRule"
-msgstr "语法错误：缺少匹配全部请求的默认规则。应在最后添加'*'规则和默认情景模式。"
+msgstr "缺少匹配全部请求的'*'默认规则！"
 
 msgid "dialog_close"
 msgstr "关闭"
@@ -204,7 +204,7 @@ msgid "options_experimental_badge"
 msgstr "测试版"
 
 msgid "options_navHeader_setting"
-msgstr "设定"
+msgstr "设置"
 
 msgid "options_navHeader_profiles"
 msgstr "情景模式"
@@ -246,7 +246,7 @@ msgid "options_showInspectMenu"
 msgstr "右键菜单中，可检查网页元素所使用的代理。"
 
 msgid "options_addConditionsToBottom"
-msgstr "把以弹出菜单创建的规则添加到列表末尾。"
+msgstr "把以弹出菜单方式创建的规则添加到列表末尾。"
 
 msgid "options_group_keyboardShortcut"
 msgstr "键盘快捷键"
@@ -279,7 +279,7 @@ msgid "options_quickSwitch"
 msgstr "快速切换"
 
 msgid "options_cycledProfiles"
-msgstr "循环切换以下情景模式:"
+msgstr "循环情景模式"
 
 msgid "options_cycledProfilesHelp"
 msgstr "点击图标或按下快捷键时，依次循环切换到以下情景模式。"
@@ -413,6 +413,9 @@ msgstr "选项同步 (测试中)"
 msgid "options_syncEnable"
 msgstr "启用同步"
 
+msgid "options_useBuiltInSyncEnhance"
+msgstr "使用浏览器内置同步功能增强 Gist 同步使用体验"
+
 msgid "options_syncEnableForce"
 msgstr "下载云端版本"
 
@@ -439,12 +442,6 @@ msgstr "您可以将云端的选项下载到此设备使用。<br>一旦选择�
 
 msgid "options_syncUnsupportedHelp"
 msgstr "选项同步暂不支持您的平台或浏览器。目前只支持桌面版Chrome的浏览器的同步，请谅解。"
-
-msgid "options_profileSyncDisabled"
-msgstr "此情景模式已经禁用同步。"
-
-msgid "options_profileSyncDisabled_quotaPerItem"
-msgstr "此情景模式使用存储空间过多，因此无法进行同步。"
 
 msgid "options_profileTabPrefix"
 msgstr "情景模式： "
@@ -555,7 +552,7 @@ msgid "options_group_pacScript"
 msgstr "PAC 脚本"
 
 msgid "options_pacScriptLastUpdate"
-msgstr "PAC 脚本最后更新时间：$TIME$"
+msgstr "PAC 脚本下载时间 $TIME$："
 
 msgid "options_pacScriptObsolete"
 msgstr "修改网址后尚未下载更新，因此脚本已经过时。请使用上方的更新按钮进行下载。"
@@ -567,7 +564,7 @@ msgid "options_virtualProfileTarget"
 msgstr "目标"
 
 msgid "options_virtualProfileTargetHelp"
-msgstr "当使用此情景模式时，相当于使用了以下情景模式："
+msgstr "应用此配置文件时，它的作用与下面选择的配置文件完全相同。"
 
 msgid "options_group_virtualProfileReplace"
 msgstr "迁移到虚情景模式"
@@ -605,7 +602,7 @@ msgid "options_group_ruleListText"
 msgstr "规则列表正文"
 
 msgid "options_ruleListLastUpdate"
-msgstr "规则列表最后更新时间：$TIME$"
+msgstr "规则列表下载时间 $TIME$："
 
 msgid "options_ruleListObsolete"
 msgstr "修改网址后尚未下载更新，因此规则列表已经过时。请使用上方的更新按钮进行下载。"
@@ -769,7 +766,7 @@ msgid "options_modalHeader_cannotDeleteProfile"
 msgstr "情景模式无法删除"
 
 msgid "options_profileReferredBy"
-msgstr "这个情景模式仍然被以下情景模式使用，所以无法删除。"
+msgstr "无法删除此配置文件，因为它被以下配置文件引用："
 
 msgid "options_modifyReferringProfiles"
 msgstr "修改以上所有情景模式并移除对此情景模式的引用后，方可删除此情景模式。"
@@ -859,7 +856,9 @@ msgid "options_profileTypeSwitchProfile"
 msgstr "自动切换模式"
 
 msgid "options_profileDescSwitchProfile"
-msgstr "根据多种条件，如域名或网址等自动选择情景模式。您也可以导入在线发布的切换规则（如 AutoProxy 列表）以简化设置。"
+msgstr ""
+"在不同的条件下，例如域或模式，自动应用不同的配置文件。\n"
+"为了方便切换，您也可以导入在线发布的规则。（替换 AutoSwitch 模式 + 规则列表.）"
 
 msgid "options_profileTypeRuleListProfile"
 msgstr "规则列表"
@@ -892,7 +891,7 @@ msgid "options_resetSuccess"
 msgstr "选项已经重置。"
 
 msgid "options_saveSuccess"
-msgstr "保存选项成功！"
+msgstr "保存选项成功。"
 
 msgid "options_importSuccess"
 msgstr "导入选项成功。"
@@ -943,7 +942,8 @@ msgstr ""
 "可以打开这里的设置界面，来了解如何使用自动切换功能。"
 
 msgid "options_guide_addMoreProfilesStep"
-msgstr "如果您需要更多的情景模式，可以随时在这里创建<b>代理、切换和其他情景模式</b>。<br>教程到此结束，您可以继续自定义设置。"
+msgstr "需要更多情景模式？你始终可以添加更多<b>代理、切换和其他情景模式</b>满足你所有"
+"的代理需要。<br>教程到此结束，享受代理吧！"
 
 msgid "options_guide_conditionStep"
 msgstr ""
@@ -1033,7 +1033,7 @@ msgid "popup_configureMonitorWebRequests"
 msgstr "设置网络检测选项"
 
 msgid "options_resultProfileForSelectedDomains"
-msgstr "对所有选中域名使用此情景模式："
+msgstr "对所有选中域名使用此情景模式"
 
 msgid "options_pac_profile_unsupported_moz"
 msgstr "由于技术限制，PAC 情景模式无法在 Mozilla Firefox 上工作！"
@@ -1044,7 +1044,7 @@ msgstr ""
 "\n"
 "\n"
 "<!-- ↑请在此行上方填写问题/建议详情，可用中文↑ -->\n"
-"SwitchyOmega $projectVersion$\n"
+"ZeroOmega $projectVersion$\n"
 "$userAgent$"
 
 msgid "browserAction_profileDetails_PacProfile"
@@ -1063,11 +1063,11 @@ msgid "browserAction_profileDetails_RuleListProfile"
 msgstr "(根据规则列表切换)"
 
 msgid "browserAction_titleNormal"
-msgstr "SwitchyOmega:: $PROFILE$"
+msgstr "ZeroOmega:: $PROFILE$"
 
 msgid "browserAction_titleWithResult"
 msgstr ""
-"SwitchyOmega:: $1:PROFILE$\n"
+"ZeroOmega:: $1:PROFILE$\n"
 "$3:DETAILS$"
 
 msgid "browserAction_titleNewerOptions"
@@ -1125,18 +1125,19 @@ msgid "about_experimental_warning_moz"
 msgstr "Mozilla Firefox 浏览器支持目前仍处于早期实验阶段！如果您遇到任何问题，请使用下方的按钮进行反馈。"
 
 msgid "about_disclaimer_networkService"
-msgstr "SwitchyOmega 不提供代理服务器、VPN等网络服务。"
+msgstr "Zer&#8205;oOmega 不提供代理服务器、VPN等网络服务。"
 
 msgid "about_disclaimer_privacy"
-msgstr "SwitchyOmega 不会跟踪您的上网记录，不在页面中插入广告。请参见我们的"
+msgstr "Z&#8205;eroOmega 不会跟踪您的上网记录，不在页面中插入广告。请参见我们的"
 "<a href='https://github.com/FelisCatus/SwitchyOmega/wiki/Privacy#%E4%B8%AD%E6%96%87'>隐私政策</a>。"
 
 msgid "about_help"
-msgstr "如有其他问题或者需要帮助，请参考"
-"<a href='https://github.com/FelisCatus/SwitchyOmega/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98'>常见问题</a>。"
+msgstr ""
+"有其它问题？在使用 Ze&#8205;roOmega 方面需要帮助？请参阅我们的<a href='https://github.com/FelisCatus/"
+"SwitchyOmega/wiki/FAQ'>常见问题</a>。"
 
 msgid "about_copyright"
-msgstr "版权所有 2012-2017 <a href='https://github.com/FelisCatus/SwitchyOmega/blob/master/AUTHORS'>The SwitchyOmega Authors</a>. 保留所有权利。"
+msgstr "版权所有 2012-2024 <a href='https://github.com/FelisCatus/SwitchyOmega/blob/master/AUTHORS'>The SwitchyOmega Authors</a>. 保留所有权利。"
 
 msgid "about_credits"
 msgstr "SwitchyOmega 的诞生离不开 <a href='https://github.com/FelisCatus/SwitchyOmega'>SwitchyOmega</a> 开源项目和其他<a href='https://github.com/FelisCatus/SwitchyOmega/blob/master/AUTHORS'>开源软件</a>。"

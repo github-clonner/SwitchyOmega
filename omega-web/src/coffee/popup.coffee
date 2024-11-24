@@ -83,20 +83,23 @@ jQuery(document).on 'keydown', (e) ->
 module.controller 'PopupCtrl', ($scope, $window, $q, omegaTarget,
   profileIcons, profileOrder, dispNameFilter, getVirtualTarget) ->
 
+  omegaTarget.state('customCss').then (customCss = '') ->
+    $scope.customCss = customCss
+
   $scope.closePopup = ->
-    $window.close()
+    $window.top.close()
 
   $scope.openManage = ->
     omegaTarget.openManage()
-    $window.close()
+    $window.top.close()
 
   refreshOnProfileChange = false
   refresh = ->
     if refreshOnProfileChange
       omegaTarget.refreshActivePage().then ->
-        $window.close()
+        $window.top.close()
     else
-      $window.close()
+      $window.top.close()
   $scope.profileIcons = profileIcons
   $scope.dispNameFilter = dispNameFilter
   $scope.isActive = (profileName) ->
@@ -120,7 +123,7 @@ module.controller 'PopupCtrl', ($scope, $window, $q, omegaTarget,
     desc || profile?.name || ''
   $scope.openOptions = (hash) ->
     omegaTarget.openOptions(hash).then ->
-      $window.close()
+      $window.top.close()
   $scope.openConditionHelp = ->
     pname = encodeURIComponent($scope.currentProfileName)
     $scope.openOptions("#/profile/#{pname}?help=condition")
@@ -140,9 +143,9 @@ module.controller 'PopupCtrl', ($scope, $window, $q, omegaTarget,
       ).then(next)
 
     if apply
-      apply.then -> $window.close()
+      apply.then -> $window.top.close()
     else
-      $window.close()
+      $window.top.close()
 
   $scope.tempRuleMenu = {open: false}
   $scope.nameExternal = {open: false}
@@ -171,6 +174,18 @@ module.controller 'PopupCtrl', ($scope, $window, $q, omegaTarget,
     omegaTarget.addCondition(conditions, profileName).then ->
       omegaTarget.state('lastProfileNameForCondition', profileName)
       refresh()
+
+  $scope.addTempConditionForDomains = (domains, profileName) ->
+    conditions = []
+    promises = []
+    for own domain, enabled of domains when enabled
+      promises.push(omegaTarget.addTempRule(
+        domain.substring(2),
+        profileName, 1)
+      )
+    Promise.all(promises).then ->
+      omegaTarget.state('lastProfileNameForCondition', profileName)
+      refresh()
   
   $scope.validateProfileName =
     conflict: '!$value || !availableProfiles["+" + $value]'
@@ -178,7 +193,7 @@ module.controller 'PopupCtrl', ($scope, $window, $q, omegaTarget,
 
   $scope.saveExternal = ->
     $scope.nameExternal.open = false
-    name = $scope.externalProfile.name
+    name = $scope.externalProfile?.name
     if name
       omegaTarget.addProfile($scope.externalProfile).then ->
         omegaTarget.applyProfile(name).then ->

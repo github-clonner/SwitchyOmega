@@ -6,6 +6,9 @@ Log = require './log'
 jsondiffpatch = require 'jsondiffpatch'
 TokenBucket = require('limiter').TokenBucket
 
+
+BUILTINSYNCKEY = 'zeroOmegaSync'
+
 class OptionsSync
   @TokenBucket: TokenBucket
 
@@ -31,7 +34,15 @@ class OptionsSync
   ###
   storage: null
 
-  constructor: (@storage, @_bucket) ->
+  ###*
+  # Use browser built-in sync to enhance gist sync function
+  # @type Storage
+  ###
+  builtInSyncStorage: null
+
+  state: null
+
+  constructor: (@storage, @builtInSyncStorage, @state, @_bucket) ->
     @_pending = {}
     @_bucket ?= new TokenBucket(10, 10, 'minute', null)
     @_bucket.clear ?= =>
@@ -50,7 +61,6 @@ class OptionsSync
   ###*
   # Merge newVal and oldVal of a given key. The default implementation choose
   # between newVal and oldVal based on the following rules:
-  # 1. Choose oldVal if syncOptions is 'disabled' in either oldVal or newVal.
   # 2. Choose oldVal if it has a revision newer than or equal to that of newVal.
   # 3. Choose oldVal if it deeply equals newVal.
   # 4. Otherwise, choose newVal.
@@ -67,8 +77,6 @@ class OptionsSync
     )
     return (key, newVal, oldVal) ->
       return oldVal if newVal == oldVal
-      if oldVal?.syncOptions == 'disabled' or newVal?.syncOptions == 'disabled'
-        return oldVal
       if oldVal?.revision? and newVal?.revision?
         result = Revision.compare(oldVal.revision, newVal.revision)
         return oldVal if result >= 0
@@ -176,9 +184,6 @@ class OptionsSync
   ###
   copyTo: (local) ->
     Promise.join local.get(null), @storage.get(null), (base, changes) =>
-      for own key of base when not (key of changes)
-        if key[0] == '+' and not base[key]?.syncOptions == 'disabled'
-          changes[key] = undefined
       local.apply(
         changes: changes
         base: base
@@ -205,10 +210,57 @@ class OptionsSync
         @_logOperations('OptionsSync::pull', operations)
         local.apply(operations)
 
-    @storage.watch null, (changes) =>
+    @storage.watch null, (changes, opts = {}) =>
       for own key, value of changes
         pull[key] = value
       return if pullScheduled?
-      pullScheduled = setTimeout(doPull, @pullThrottle)
+      if opts.immediately
+        doPull()
+      else
+        pullScheduled = setTimeout(doPull, @pullThrottle)
+  toggleBuiltInSync: (useBuiltInSync) ->
+    @getBuiltInSyncConfig().then((builtInSyncConfig) =>
+      @state.get({
+        'gistId': '',
+        'gistToken': '',
+        'lastGistCommit': ''
+      }).then((syncConfig) =>
+        if useBuiltInSync is undefined
+          useBuiltInSync = !builtInSyncConfig
+        if useBuiltInSync is true
+          _obj = {}
+          _obj[BUILTINSYNCKEY] = syncConfig
+          @builtInSyncStorage.set(_obj)
+        else
+          @builtInSyncStorage.remove(BUILTINSYNCKEY)
+      )
+    )
+  getBuiltInSyncConfig: ->
+    @builtInSyncStorage.get(BUILTINSYNCKEY).then((_obj) ->
+      return _obj[BUILTINSYNCKEY]
+    )
+  updateBuiltInSyncConfigIf: (_builtInSyncConfig) ->
+    @getBuiltInSyncConfig().then((builtInSyncConfig) =>
+      if !!builtInSyncConfig
+        newBuiltInSyncConfig = Object.assign(
+          {}, builtInSyncConfig, _builtInSyncConfig
+        )
+        _obj = {}
+        _obj[BUILTINSYNCKEY] = newBuiltInSyncConfig
+        @builtInSyncStorage.set(_obj)
+    )
+  checkChange: ->
+    @storage.checkChange({
+      immediately: true
+      force: true
+    })
+  init: (args) ->
+    args.optionsSync = this
+    args.state = @state
+    @storage.init(args)
+  destroy: ->
+    @storage.destroy()
+  flush: ({data}) ->
+    @storage.flush({data})
 
 module.exports = OptionsSync

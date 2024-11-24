@@ -10,21 +10,21 @@ section
     .media-left
       img.media-object(src='img/icons/omega-action-32.png')
     .media-body
-      h4.media-heading {{'appNameShort' | tr}}
+      h4.media-heading {{'Z&#8205e&#8205r&#8205o&#8205Omega'}}
       p {{'about_app_description' | tr}}
 section
   p
-    button.btn.btn-info(ng-click='reportIssue()')
+    button.btn.btn-info(ng-click='reportIssue()' ladda='issueReporting')
       span.glyphicon.glyphicon-comment
       = ' '
       | {{'popup_reportIssues' | tr}}
     = ' '
-    button.btn.btn-default(ng-click='downloadLog()')
+    button.btn.btn-default(ng-click='downloadLog()' ladda='logDownloading' data-spinner-color="currentColor")
       span.glyphicon.glyphicon-download
       = ' '
       | {{'popup_errorLog' | tr}}
     = ' '
-    button.btn.btn-danger(ng-click='showResetOptionsModal()')
+    button.btn.btn-danger(ng-click='showResetOptionsModal()' ladda='optionsReseting')
       span.glyphicon.glyphicon-alert
       = ' '
       | {{'options_reset' | tr}}
@@ -46,10 +46,10 @@ section
 
 section(style='margin-top: 7em')
   p
-    | {{'appNameShort' | tr}}
+    | {{'Z&#8203;er&#8203;oO&#8203;mega'}}
     br
     span(ng-bind-html='"about_copyright" | tr')
     br
-    span(ng-bind-html='"about_license" | tr')
+    span(ng-bind-html='htmlCredits')
     br
-    span(ng-bind-html='"about_credits" | tr')
+    span(ng-bind-html='htmlLicense')

@@ -36,7 +36,7 @@ module.exports = class Inspect
       id: 'inspectFrame'
       title: chrome.i18n.getMessage('contextMenu_inspectFrame')
       contexts: ['frame']
-      onclick: @inspect.bind(this)
+      #onclick: @inspect.bind(this)
       documentUrlPatterns: webResource
     })
 
@@ -44,7 +44,7 @@ module.exports = class Inspect
       id: 'inspectLink'
       title: chrome.i18n.getMessage('contextMenu_inspectLink')
       contexts: ['link']
-      onclick: @inspect.bind(this)
+      #onclick: @inspect.bind(this)
       targetUrlPatterns: webResource
     })
 
@@ -56,7 +56,7 @@ module.exports = class Inspect
         'video'
         'audio'
       ]
-      onclick: @inspect.bind(this)
+      #onclick: @inspect.bind(this)
       targetUrlPatterns: webResource
     })
 
@@ -69,7 +69,7 @@ module.exports = class Inspect
     @_enabled = false
 
   propForMenuItem:
-    'inspectPage': 'pageUrl'
+    #'inspectPage': 'pageUrl'
     'inspectFrame': 'frameUrl'
     'inspectLink': 'linkUrl'
     'inspectElement': 'srcUrl'

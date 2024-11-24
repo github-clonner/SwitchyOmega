@@ -1,5 +1,11 @@
-SwitchyOmega
+ZeroOmega, forked from SwitchyOmega compatible with manifest v3
 ============
+
+[Chrome Web Store](https://chromewebstore.google.com/detail/pfnededegaaopdmhkdmcofjmoldfiped)
+
+[Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/zeroomegaproxy-switchy-/dmaldhchmoafliphkijbfhaomcgglmgd)
+
+[Firefox Addon](https://addons.mozilla.org/en-US/firefox/addon/zeroomega/)
 
 Manage and switch between multiple proxies quickly & easily.
 
@@ -111,7 +117,7 @@ To build the project:
     grunt
     # After building, a folder will be generated:
     cd .. # Return to project root.
-    ls omega-chromium-extension/build/
+    ls omega-target-chromium-extension/build/
     # The folder above can be loaded as an unpacked extension in Chromium now.
 
 To enable `grunt watch`, run `grunt watch` once in the `omega-build` directory.
@@ -139,7 +145,7 @@ along with SwitchyOmega.  If not, see <http://www.gnu.org/licenses/>.
 Notice
 ------
 
-SwitchyOmega currently does not have a dedicated project homepage. `switchyomega.com` and similar webites are NOT affiliated with the SwitchyOmega project in any way, nor are they maintained by SwitchyOmega project members. Please refer to this Github repository and wiki for official information.
+SwitchyOmega currently does not have a dedicated project homepage. `switchyomega.com` and similar websites are NOT affiliated with the SwitchyOmega project in any way, nor are they maintained by SwitchyOmega project members. Please refer to this Github repository and wiki for official information.
 
 SwitchyOmega is not cooperating with any proxy providers, VPN providers or ISPs at the moment. No advertisement is displayed in SwitchyOmega project or software. Proxy providers are welcome to recommend SwitchyOmega as part of the solution in tutorials, but it must be made clear that SwitchyOmega is an independent project, is not affiliated with the provider and therefore cannot provide any support on network connections or proxy technology.
 
