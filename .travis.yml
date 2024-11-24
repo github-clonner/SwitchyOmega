@@ -1,0 +1,13 @@
+dist: trusty
+sudo: true
+
+language: node_js
+node_js: stable
+
+cache:
+  directories:
+    - node_modules
+
+script:
+    - npm install -g grunt-cli bower web-ext && cd omega-build && npm run deps && npm run dev && grunt
+    - cd ../omega-pac && npm test & cd ../omega-target && npm test & cd ../omega-build && grunt & cd ../omega-target-chromium-extension && web-ext -s build lint
